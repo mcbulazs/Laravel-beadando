@@ -16,9 +16,23 @@ class ContestFactory extends Factory
      */
     public function definition(): array
     {
+        $history = '';
+        $herohp = 20;
+        $enemyhp = 20;
+        while ($herohp > 0 && $enemyhp > 0) { //not matching with actual result, but kinda valid data
+            if ($this->faker->boolean()) {
+                $dmg = $this->faker->numberBetween(1, 5);
+                $enemyhp -= $dmg;
+                $history .= '~Hero does ' . $dmg . 'dmg; Enemy has ' . $enemyhp . 'hp';
+            } else {
+                $dmg = $this->faker->numberBetween(1, 5);
+                $herohp -= $dmg;
+                $history .= '~Enemy does ' . $dmg . 'dmg; Hero has ' . $herohp . 'hp';
+            }
+        }
         return [
-            'win' => $this->faker->boolean() ? $this->faker->boolean() : null, // i know its weird but it is what it is
-            'history' => $this->faker->text(), //TODO: have to think about this one
+            'win' => $this->faker->optional(0.75)->boolean(),
+            'history' => $history, //TODO: have to think about this one
         ];
     }
 }

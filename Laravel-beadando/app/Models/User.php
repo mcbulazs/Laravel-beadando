@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Character::class, 'user_id');
     }
+
+    public function contests()
+    {
+        return $this->hasMany(Contest::class, 'user_id');
+    }
 }

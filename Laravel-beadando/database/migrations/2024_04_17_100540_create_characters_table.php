@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('enemy');
-            $table->integer('defence');
-            $table->integer('strength');
-            $table->integer('accuracy');
-            $table->integer('magic');
+            $table->boolean('enemy')->default(false);
+            $table->integer('defence')->min(0)->max(3);
+            $table->integer('strength')->min(0)->max(20);
+            $table->integer('accuracy')->min(0)->max(20);
+            $table->integer('magic')->min(0)->max(20);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
