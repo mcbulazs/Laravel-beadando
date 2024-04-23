@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-screen">
 
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,8 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
-<body>
-    <header class="sticky top-0 z-40 bg-gray-800 text-white p-5">
+<body class="h-screen">
+    <header class="sticky top-0 h-20 z-40 bg-gray-800 text-white p-5">
         <div class="mx-auto">
             <div class="flex justify-between items-center">
                 <div class="w-1/3 text-start">
@@ -34,10 +34,8 @@
             </div>
         </div>
     </header>
-
     {{ $slot }}
-
-    <footer class="bg-gray-800 text-white py-5 px-5 text-center absolute bottom-0 left-0 w-full">
+    <footer class="bg-gray-800 text-white py-5 px-5 text-center absolute bottom-0 left-0 w-full h-20">
         <div class="mx-auto">
             <p>&copy;All rights reserved</p>
         </div>

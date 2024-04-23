@@ -30,6 +30,7 @@
             @csrf
             @method('DELETE')
             <button type="submit" class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">Delete</button>
+            <a href="{{ url('contests/create/'. $character->id) }}" class="bg-green-500 px-4 py-2 rounded hover:bg-blue-600">Start contest</a>
         </form>
     </div>
 </x-general-layout>
