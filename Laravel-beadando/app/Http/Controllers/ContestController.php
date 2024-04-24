@@ -19,7 +19,7 @@ class ContestController extends Controller
         $character = Character::where('id', $id)->first();
         $place  = Place::inRandomOrder()->first();
         if (!$character || !$enemy || !$place) {
-            return redirect()->route('character.index');
+            return redirect()->route('index');
         }
         $contest = Contest::make([
             'win' => null,
@@ -38,7 +38,7 @@ class ContestController extends Controller
     public function show(string $id)
     {
         $contest = Contest::where('id', $id)->with('characters')->first();
-        if ($contest->user->id !== Auth::id()) {
+        if (!auth()->user()->admin &&  $contest->user->id !== Auth::id()) {
             return redirect()->route('index');
         }
         $characters = $contest->characters;

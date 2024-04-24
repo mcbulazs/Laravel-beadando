@@ -20,6 +20,9 @@
                 </div>
                 <div class="w-1/3 text-end">
                     @auth
+                    @if (Auth::user()->admin)
+                    <a href="{{url('places')}}" class="text-amber-800">Places</a>
+                    @endif
                     <a href="{{url('characters')}}" class="text-sky-400">{{ Auth::user()->name }}</a>
                     <form action="{{ route('logout') }}" method="post" class="inline">
                         @csrf
@@ -35,7 +38,7 @@
         </div>
     </header>
     {{ $slot }}
-    <footer class="bg-gray-800 text-white py-5 px-5 text-center absolute bottom-0 left-0 w-full h-20">
+    <footer class="bg-gray-800 text-white py-5 px-5 text-center  bottom-0 left-0 w-full h-20">
         <div class="mx-auto">
             <p>&copy;All rights reserved</p>
         </div>

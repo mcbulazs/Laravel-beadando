@@ -18,7 +18,7 @@ class CharacterController extends Controller
         //list only the characters the user owns
         $characters = Character::where('user_id', auth()->id())->get();
         //admin can see all character which has enemy set to true, and its own characters
-        if (auth()->user()->is_admin) {
+        if (auth()->user()->admin) {
             $characters = Character::where('user_id', auth()->id())->orWhere('enemy', true)->get();
         }
         return view('components.character-list', [
@@ -30,7 +30,7 @@ class CharacterController extends Controller
         //show the character
         $character = Character::where('id', $id)->first();
         //if enemy is true, admin can see the character
-        if (!$character->enemy || !auth()->user()->is_admin) {
+        if (!$character->enemy || !auth()->user()->admin) {
             $character = Character::where('user_id', auth()->id())->where('id', $id)->first();
         }
         $contests = Contest::where('user_id', auth()->id())->with('characters')->get();
@@ -44,7 +44,7 @@ class CharacterController extends Controller
         //edit the character
         //admin can edit enemy characters
         $character = Character::where('id', $id)->first();
-        if ($character->enemy && auth()->user()->is_admin) {
+        if ($character->enemy && auth()->user()->admin) {
             return view('components.character-edit', [
                 'character' => $character
             ]);
@@ -79,7 +79,7 @@ class CharacterController extends Controller
     {
         //delete the character
         $character = Character::where('id', $id)->first();
-        if (!$character->enemy || !auth()->user()->is_admin) {
+        if (!$character->enemy || !auth()->user()->admin) {
             $character = Character::where('user_id', auth()->id())->where('id', $id)->first();
         }
         $character->delete();
@@ -90,7 +90,7 @@ class CharacterController extends Controller
     {
         //create a new character
         return view('components.character-create', [
-            'isAdmin' => auth()->user()->is_admin
+            'isAdmin' => auth()->user()->admin
         ]);
     }
     public function store(Request $request)
