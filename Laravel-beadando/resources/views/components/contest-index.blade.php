@@ -56,9 +56,9 @@
                 {{$contest->history}}
             </p>
             <div class="flex justify-center w-full h-10 gap-2">
-                <a href="{{route()}}" class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">Melee</a>
-                <a href="{{route()}}" class="bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-600">Ranged</a>
-                <a href="{{route()}}" class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">Magic</a>
+                <a href="{{route('contests.attack',['id'=>$contest->id,'attackType'=>'melee'])}}" class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">Melee</a>
+                <a href="{{route('contests.attack',['id'=>$contest->id,'attackType'=>'ranged'])}}" class="bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-600">Ranged</a>
+                <a href="{{route('contests.attack',['id'=>$contest->id,'attackType'=>'magic'])}}" class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">Magic</a>
             </div>
         </div>
     </div>
